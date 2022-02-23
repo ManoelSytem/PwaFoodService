@@ -1,7 +1,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" [formGroup]="loginForm">
+				<form class="login100-form validate-form" [formGroup]="loginForm" (submit)="submitlogin()">
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>
@@ -11,15 +11,20 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" formControlName="email" name="email" placeholder="email">
+						<div class="mensagem-erro" *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+							Campo obrigatório 
+                        </div>
+   
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
-
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100"  formControlName="senha"  type="password" name="senha" placeholder="senha">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+						<div class="mensagem-erro" *ngIf="loginForm.get('senha')?.errors && loginForm.get('senha')?.touched">
+							Campo obrigatório 
+                        </div>
 					</div>
-
 					<div class="contact100-form-checkbox">
 						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
 						<label class="label-checkbox100" for="ckb1">
@@ -32,13 +37,11 @@
 							Login
 						</button>
 					</div>
-
 					<div class="text-center p-t-90">
 						<a class="txt1" href="#">
 							Forgot Password?
 						</a>
 					</div>
-				
 				</form>
 			</div>
 		</div>
